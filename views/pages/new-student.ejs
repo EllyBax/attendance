@@ -14,9 +14,7 @@
 
 <body>
   <main>
-    <h1 class="title">
-      <%= title %>
-    </h1>
+    <%- include('../partials/header') %>
     <div class="nav">
       <form action="/student-registration" method="post">
         <h2>Student Registration</h2>
@@ -31,9 +29,11 @@
         <button type="submit">REGISTER</button>
       </form>
       <br>
-      <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center>
+      <!-- <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center> -->
     </div>
-  </main>
+  </main><footer>
+    <%- include('../partials/footer') %>
+  </footer>
 </body>
 
 </html>

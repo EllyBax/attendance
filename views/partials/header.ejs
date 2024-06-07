@@ -1,0 +1,9 @@
+<header class="title">
+  <h1>
+    <%= title %>
+      <%= locals._module %>
+  </h1>
+  <% for(link of locals.navlinks) {%>
+    <button onclick="window.location.href = `<%= link %>`"><%= link %></button>
+  <%}%>
+</header>

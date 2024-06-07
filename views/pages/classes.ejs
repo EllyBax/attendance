@@ -13,17 +13,18 @@
 
 <body>
   <main>
-    <h1 class="title">
-      <%= title %>
-    </h1>
-    <div class="nav">
-      <div class="navlinks">
-          <%const hrefUrl =`${currentUrl}/BEng19-COE`; %>
-          <a href="<%= hrefUrl %>">BEng19-COE</a>
+    <%- include('../partials/header') %>
+      <div class="nav">
+        <div class="navlinks">
+          <%const hrefUrl=`${currentUrl}/BEng19-COE`; %>
+            <a href="<%= hrefUrl %>">BEng19-COE</a>
+        </div>
+        <br>
       </div>
-      <br>
-    </div>
   </main>
+  <footer>
+    <%- include('../partials/footer') %>
+  </footer>
 </body>
 
 </html>

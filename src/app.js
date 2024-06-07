@@ -6,6 +6,13 @@ dotenv.config({
   path: ".env.development.local",
 });
 
+const navlinks = {
+  teachers: ["home", "students", "classes", "modules"],
+  students: ["home", "teachers", "classes", "modules"],
+  modules: ["home", "teachers", "students", "classes"],
+  classes: ["home", "teachers", "students", "modules"],
+};
+
 const { Pool } = pkg;
 
 const pool = new Pool({
@@ -94,27 +101,35 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get('/home', (req, res)=>{
+  return res.redirect("/")
+})
+
 app.get("/students", async (req, res) => {
   return res.render("pages/students", {
     title: "students page",
+    navlinks: navlinks.students
   });
 });
 
 app.get("/new-student", async (req, res) => {
   return res.render("pages/new-student", {
     title: "new student page",
+    navlinks: navlinks.students
   });
 });
 
 app.get("/teachers", async (req, res) => {
   return res.render("pages/teachers", {
     title: "teachers page",
+    navlinks: navlinks.teachers
   });
 });
 
 app.get("/new-teacher", async (req, res) => {
   return res.render("pages/new-teacher", {
     title: "new teacher page",
+    navlinks: navlinks.teachers,
   });
 });
 
@@ -122,6 +137,7 @@ app.get("/classes", async (req, res) => {
   return res.render("pages/classes", {
     title: "Classes page",
     currentUrl: req.originalUrl,
+    navlinks: navlinks.classes,
   });
 });
 
@@ -130,6 +146,7 @@ app.get("/classes/:name", async (req, res) => {
   return res.render("pages/class-details", {
     title: "Attendance for ",
     _class,
+    navlinks: navlinks.classes,
   });
 });
 
@@ -147,6 +164,7 @@ app.get("/modules", async (req, res) => {
     title: "Modules page",
     currentUrl: req.originalUrl,
     modules,
+    navlinks: navlinks.modules,
   });
 });
 
@@ -155,6 +173,7 @@ app.get("/modules/:code", async (req, res) => {
   return res.render("pages/module-details", {
     title: "Attendance for ",
     _module,
+    navlinks: navlinks.modules
   });
 });
 

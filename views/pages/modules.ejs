@@ -13,9 +13,7 @@
 
 <body>
   <main>
-    <h1 class="title">
-      <%= title %>
-    </h1>
+    <%- include('../partials/header') %>
     <div class="nav">
       <div class="navlinks">
         <% for (let _module of modules) { %>
@@ -26,7 +24,9 @@
       </div>
       <br>
     </div>
-  </main>
+  </main><footer>
+    <%- include('../partials/footer') %>
+  </footer>
 </body>
 </html>
 

@@ -13,9 +13,7 @@
 
 <body>
   <main>
-    <h1 class="title">
-      <%= title %>
-    </h1>
+    <%- include('../partials/header') %>
     <div class="nav">
       <div class="table">
         <table class="outlined-table">
@@ -39,9 +37,11 @@
       </div>
       <a title="Create new student profile" href="/new-student">Register new student</a>
       <br>
-      <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center>
+      <!-- <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center> -->
     </div>
-  </main>
+  </main><footer>
+    <%- include('../partials/footer') %>
+  </footer>
 </body>
 
 </html>

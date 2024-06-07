@@ -13,14 +13,15 @@
 
 <body>
   <main>
-    <h1 class="title">
-      <%= title %>
-        <%= _module %>
-    </h1>
-    <div class="nav">
-      <br>
-    </div>
+    <%- include('../partials/header') %>
+
+      <div class="nav">
+        <br>
+      </div>
   </main>
+  <footer>
+    <%- include('../partials/footer') %>
+  </footer>
 </body>
 
 </html>

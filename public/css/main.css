@@ -14,6 +14,7 @@
 body {
   margin: 0;
   box-sizing: border-box;
+  width: 100vw;
   background: var(--main-bg);
 }
 
@@ -21,14 +22,38 @@ main {
   background: var(--main-bg);
   color: var(--main-text);
   height: 100dvh;
-  width: 100vw;
+  width: 100%;
 }
 
 .title {
   padding: 1rem;
-  height: calc(20% - 3rem);
+  min-height: calc(20% - 2rem);
   text-align: center;
-  text-transform:capitalize;
+  text-transform: capitalize;
+}
+
+.title h1{
+  margin: 1rem auto;
+  font-size: 3rem;
+}
+
+.title button {
+  border: none;
+  background: var(--main-text);
+  color: var(--second-bg);
+  font-size: 1.1rem;
+  margin: 0 .5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 7px 14px;
+  transition: all 0.5s ease-in-out;
+}
+
+.title button:hover {
+  background: var(--second-bg);
+  color: var(--second-text);
 }
 
 .nav {
@@ -110,4 +135,11 @@ main {
   text-decoration: underline;
   cursor: pointer;
   width: max-content;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  color: var(--main-text);
+  background: var(--main-bg);
 }
