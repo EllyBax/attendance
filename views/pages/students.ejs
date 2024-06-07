@@ -14,32 +14,36 @@
 <body>
   <main>
     <%- include('../partials/header') %>
-    <div class="nav">
-      <div class="table">
-        <table class="outlined-table">
-          <tr>
-            <th>Registration Number</th>
-            <th>Name</th>
-          </tr>
-          <tr>
-            <td>1001</td>
-            <td>John Doe</td>
-          </tr>
-          <tr>
-            <td>1002</td>
-            <td>Jane Smith</td>
-          </tr>
-          <tr>
-            <td>1003</td>
-            <td>Bob Johnson</td>
-          </tr>
-        </table>
+      <div class="nav">
+        <div class="table">
+          <table class="outlined-table">
+            <tr>
+              <th>S/N</th>
+              <th>Registration Number</th>
+              <th>Name</th>
+            </tr>
+            <% let index=0 %>
+              <% for (let student of students) { %>
+                <tr>
+                  <td>
+                    <%= ++index %>
+                  </td>
+                  <td>
+                    <%= student.registrationnumber %>
+                  </td>
+                  <td>
+                    <%= student.name %>
+                  </td>
+                </tr>
+                <% } %>
+
+          </table>
+        </div>
+        <a title="Create new student profile" href="/new-student">Register new student</a>
+        <br>
       </div>
-      <a title="Create new student profile" href="/new-student">Register new student</a>
-      <br>
-      <!-- <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center> -->
-    </div>
-  </main><footer>
+  </main>
+  <footer>
     <%- include('../partials/footer') %>
   </footer>
 </body>
