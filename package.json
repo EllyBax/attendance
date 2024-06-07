@@ -1,0 +1,23 @@
+{
+  "name": "attedndance1.1",
+  "version": "1.0.0",
+  "description": "This project aims to provide a comprehensive solution for analyzing attendance data of both teachers and students within an educational institution. It is designed to assist the Head of Department in evaluating attendance patterns, identifying trends, and making informed decisions to improve overall attendance rates.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.3"
+  }
+}
