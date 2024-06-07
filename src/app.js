@@ -168,9 +168,12 @@ app.get("/new-student", async (req, res) => {
 });
 
 app.get("/teachers", async (req, res) => {
+  const teachers = await pool.query(fetchTeachers);
+  console.log(teachers.rows);
   return res.render("pages/teachers", {
     title: "teachers page",
     navlinks: navlinks.teachers,
+    teachers: teachers.rows,
   });
 });
 
@@ -228,6 +231,21 @@ app.post("/student-registration", async (req, res) => {
   } catch (err) {
     console.error("Error inserting student:", err);
     return res.redirect("/new-student");
+  }
+});
+
+app.post("/teacher-registration", async (req, res) => {
+  const { identificationNumber, name } = req.body;
+  try {
+    const teacher = await pool.query(insertTeacherData, [
+      identificationNumber,
+      name,
+    ]);
+    console.log("Teacher inserted successfully!\n", teacher.rows);
+    return res.redirect("/teachers");
+  } catch (err) {
+    console.error("Error inserting student:", err);
+    return res.redirect("/new-teacher");
   }
 });
 
