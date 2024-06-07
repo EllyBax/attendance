@@ -44,9 +44,8 @@ const createModulesTable = `CREATE TABLE IF NOT EXISTS MODULES
   teacherId bigint
   )`;
 
-let _module;
 const createModuleAttendanceTable = `
-  CREATE TABLE IF NOT EXISTS ${_module}Attendance(
+  CREATE TABLE IF NOT EXISTS ($1)(
   id serial primary key not null,
   name text,
   role text,
@@ -67,28 +66,6 @@ const fetchModules = `SELECT * FROM modules`;
 
 const fetchStudents = `SELECT * FROM students`;
 
-async function main() {
-  try {
-    console.log("Running " + createStudentsTable + "\n");
-    await pool.query(createStudentsTable);
-    console.log("Done with " + createStudentsTable + "\n");
-
-    console.log("Running " + createTeachersTable + "\n");
-    await pool.query(createTeachersTable);
-    console.log("Done with " + createTeachersTable + "\n");
-
-    console.log("Running " + createModulesTable + "\n");
-    await pool.query(createModulesTable);
-    console.log("Done with " + createModulesTable + "\n");
-
-    console.log("All queries executed succesfully\n");
-    return 0;
-  } catch (error) {
-    console.log(error);
-    return 1;
-  }
-}
-
 const port = process.env.PORT;
 const app = express();
 
@@ -101,28 +78,28 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.get('/home', (req, res)=>{
-  return res.redirect("/")
-})
+app.get("/home", (req, res) => {
+  return res.redirect("/");
+});
 
 app.get("/students", async (req, res) => {
   return res.render("pages/students", {
     title: "students page",
-    navlinks: navlinks.students
+    navlinks: navlinks.students,
   });
 });
 
 app.get("/new-student", async (req, res) => {
   return res.render("pages/new-student", {
     title: "new student page",
-    navlinks: navlinks.students
+    navlinks: navlinks.students,
   });
 });
 
 app.get("/teachers", async (req, res) => {
   return res.render("pages/teachers", {
     title: "teachers page",
-    navlinks: navlinks.teachers
+    navlinks: navlinks.teachers,
   });
 });
 
@@ -156,7 +133,7 @@ let modules = [
   { name: "Radar", code: "ETU 08222", credits: 9, teacherId: "" },
   { name: "Broadcasting", code: "ETU 08223", credits: 9, teacherId: "" },
   { name: "Satellite", code: "ETU 08224", credits: 9, teacherId: "" },
-  { name: "Industrial Robotics", code: "COU 08202", credits: 9, teacherId: "" },
+  { name: "Robotics", code: "COU 08202", credits: 9, teacherId: "" },
 ];
 
 app.get("/modules", async (req, res) => {
@@ -173,7 +150,7 @@ app.get("/modules/:code", async (req, res) => {
   return res.render("pages/module-details", {
     title: "Attendance for ",
     _module,
-    navlinks: navlinks.modules
+    navlinks: navlinks.modules,
   });
 });
 
