@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    @import url('/css/main.css');
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1 class="title">
+      <%= title %>
+    </h1>
+    <div class="nav">
+      <div class="table">
+        <table class="outlined-table">
+          <tr>
+            <th>Registration Number</th>
+            <th>Name</th>
+          </tr>
+          <tr>
+            <td>1001</td>
+            <td>John Doe</td>
+          </tr>
+          <tr>
+            <td>1002</td>
+            <td>Jane Smith</td>
+          </tr>
+          <tr>
+            <td>1003</td>
+            <td>Bob Johnson</td>
+          </tr>
+        </table>
+      </div>
+      <a title="Create new student profile" href="/new-student">Register new student</a>
+      <br>
+      <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center>
+    </div>
+  </main>
+</body>
+
+</html>

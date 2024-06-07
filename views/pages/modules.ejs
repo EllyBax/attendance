@@ -18,13 +18,16 @@
     </h1>
     <div class="nav">
       <div class="navlinks">
-        <a href="/teachers">TEACHERS</a>
-        <a href="/students">STUDENTS</a>
-        <a href="/classes">CLASSES</a>
-        <a href="/modules">MODULES</a>
+        <% for (let _module of modules) { %>
+            <a href="<%= currentUrl %>/<%= _module.name %>">
+              <%= _module.name %>
+            </a>
+        <% } %>
       </div>
+      <br>
     </div>
   </main>
 </body>
+</html>
 
 </html>

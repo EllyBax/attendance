@@ -1,0 +1,113 @@
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
+:root {
+  --main-bg: #f7f7f7;
+  --second-bg: #e9e9e9;
+  --main-text: #0f0f0f;
+  --second-text: #2f2f2f;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background: var(--main-bg);
+}
+
+main {
+  background: var(--main-bg);
+  color: var(--main-text);
+  height: 100dvh;
+  width: 100vw;
+}
+
+.title {
+  padding: 1rem;
+  height: calc(20% - 3rem);
+  text-align: center;
+  text-transform:capitalize;
+}
+
+.nav {
+  height: calc(80% - 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  background: var(--second-bg);
+}
+
+.nav > a {
+  margin-bottom: 1rem;
+  color: var(--main-text);
+}
+
+.navlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 60%;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.navlinks a {
+  display: block;
+  padding: 6px 12px;
+  margin: 0 auto;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  width: calc(100% - 3rem);
+  background: var(--main-bg);
+  color: var(--second-text);
+  transition: all 0.5s ease-in-out;
+}
+
+.navlinks a:hover {
+  background: var(--main-text);
+  color: var(--second-bg);
+}
+
+.table {
+  max-width: 100%; /* Adjusts the table width */
+  margin: 1rem auto;
+  overflow-x: scroll;
+}
+
+.outlined-table {
+  border-collapse: collapse; /* Combines borders into a single border */
+}
+
+.outlined-table td,
+.outlined-table th {
+  overflow-wrap: break-word;
+}
+
+.outlined-table th,
+.outlined-table td {
+  border: 2px solid var(--second-text); /* Defines the outline color and thickness */
+  padding: 8px; /* Adds space around the text */
+  text-align: left; /* Aligns text to the left */
+}
+
+.outlined-table th {
+  background-color: var(--main-text);
+  color: var(--main-bg);
+}
+.outlined-table td {
+  background-color: var(--second-bg);
+}
+
+.back {
+  all: unset;
+  font-size: 1.2rem;
+  color: var(--main-text);
+  text-decoration: underline;
+  cursor: pointer;
+  width: max-content;
+}

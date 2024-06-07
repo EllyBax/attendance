@@ -1,0 +1,59 @@
+@import url("/css/main.css");
+
+form {
+  padding: 1rem;
+  min-width: 500px;
+  margin: 1rem auto;
+  border-radius: 7px;
+  background: var(--main-bg);
+  text-align: center;
+}
+
+form h2 {
+  text-align: center;
+}
+
+.formcheck {
+  margin: 10px auto;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.formcheck label {
+  width: 40%;
+  text-align: end;
+  padding: 10px;
+}
+
+.formcheck input {
+  width: 60%;
+  text-align: start;
+  padding: 10px;
+  background: var(--second-bg);
+  border: 1px solid var(--second-text);
+  border-bottom: 3px solid var(--second-text);
+  border-radius: 4px;
+}
+
+form button {
+  all: unset;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--second-bg);
+  border-radius: 7px;
+  transition: all 0.5s ease-in-out;
+  margin: 0 auto;
+}
+
+form button:hover {
+  color: var(--main-bg);
+  background: var(--second-text);
+}
+
+button[disabled] {
+  background: var(--second-text);
+  border: none;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    @import url('/css/main.css');
+    @import url('/css/students.css');
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1 class="title">
+      <%= title %>
+    </h1>
+    <div class="nav">
+      <form action="/student-registration" method="post">
+        <h2>Student Registration</h2>
+        <div class="formcheck">
+          <label for="name"> Student's Name: </label>
+          <input type="text" id="name" name="name" placeholder="Full Name" />
+        </div>
+        <div class="formcheck">
+          <label for="registrationNumber"> Registration Number: </label>
+          <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Registration Number" />
+        </div>
+        <button type="submit">REGISTER</button>
+      </form>
+      <br>
+      <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center>
+    </div>
+  </main>
+</body>
+
+</html>
