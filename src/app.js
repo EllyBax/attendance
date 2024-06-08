@@ -98,41 +98,6 @@ async function insertModules() {
   }
 }
 
-const createStudentsTable = `CREATE TABLE IF NOT EXISTS STUDENTS 
-  (
-  registrationNumber bigint unique primary key not null,
-  name text
-  )`;
-
-const createTeachersTable = `CREATE TABLE IF NOT EXISTS TEACHERS 
-  (
-  id bigint unique primary key not null,
-  name text
-  )`;
-
-const createModulesTable = `CREATE TABLE IF NOT EXISTS MODULES 
-  (
-  code text unique primary key not null,
-  name text,
-  credits integer,
-  teacherId bigint
-  )`;
-
-const createModuleAttendanceTable = `
-  CREATE TABLE IF NOT EXISTS ($1)(
-  id serial primary key not null,
-  name text,
-  role text,
-  lesson1 boolean,
-  lesson2 boolean,
-  lesson3 boolean,
-  lesson4 boolean,
-  lesson5 boolean,
-  lesson6 boolean,
-  lesson7 boolean
-  )
-  `;
-
 const fetchTeachers = `
   SELECT * FROM teachers
 `;

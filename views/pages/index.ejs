@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <style>
+      @import url("/css/main.css");
+    </style>
+  </head>
 
-  <style>
-    @import url('/css/main.css');
-  </style>
-</head>
-
-<body>
-  <main>
-    <header class="title">
-      <h1>
-        <%= title %>
-      </h1>
-    </header>
-    <div class="nav">
-      <div class="navlinks">
-        <a href="/teachers">TEACHERS</a>
-        <a href="/students">STUDENTS</a>
-        <a href="/classes">CLASSES</a>
-        <a href="/modules">MODULES</a>
+  <body>
+    <main>
+      <header class="title">
+        <h1><%= title %></h1>
+      </header>
+      <div class="nav">
+        <div class="navlinks">
+          <a href="/teachers">TEACHERS</a>
+          <a href="/students">STUDENTS</a>
+          <a href="/classes">CLASSES</a>
+          <a href="/modules">MODULES</a>
+        </div>
       </div>
-    </div>
-  </main>
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
-</body>
-
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
+  </body>
 </html>
