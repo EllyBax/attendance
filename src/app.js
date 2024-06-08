@@ -106,6 +106,8 @@ const fetchModules = `SELECT * FROM modules`;
 const fetchStudents = `SELECT * FROM students`;
 
 app.get("/", async (req, res) => {
+  // const result = await insertModules();
+  // console.log(result);
   return res.render("pages/index", {
     title: "homepage",
   });

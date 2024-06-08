@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <style>
+      @import url("/css/main.css");
+      @import url("/css/students.css");
+    </style>
+  </head>
 
-  <style>
-    @import url('/css/main.css');
-    @import url('/css/students.css');
-  </style>
-</head>
-
-<body>
-  <main>
-    <%- include('../partials/header') %>
+  <body>
+    <main id="main">
+      <%- include('../partials/header') %>
       <div class="nav">
-        <form action="/teacher-registration" method="post">
+        <form action="/teacher-registration" method="post" id="teachersForm">
           <h2>Teacher Registration</h2>
           <div class="formcheck">
             <label for="name"> Teacher's Name: </label>
@@ -24,18 +23,65 @@
           </div>
           <div class="formcheck">
             <label for="identificationNumber"> Identification Number: </label>
-            <input type="text" id="identificationNumber" name="identificationNumber"
-              placeholder="Identification Number" />
+            <input
+              type="text"
+              id="identificationNumber"
+              name="identificationNumber"
+              placeholder="Identification Number"
+            />
           </div>
-          <button type="submit">REGISTER</button>
+          <button id="submitButton" type="submit">REGISTER</button>
         </form>
-        <br>
+        <br />
         <!-- <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center> -->
       </div>
-  </main>
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
-</body>
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const teachersForm = document.getElementById("teachersForm");
+        const successDiv = document.createElement("div");
+        successDiv.className = "success";
+        successDiv.id = "success";
+
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error";
+        errorDiv.id = "error";
+
+        teachersForm.addEventListener("submit", (event) => {
+          event.preventDefault(); // Prevent the form from submitting normally
+
+          const name = document.getElementById("name").value.trim();
+          const identificationNumber = document
+            .getElementById("identificationNumber")
+            .value.trim();
+
+          let message;
+
+          if (!name || !identificationNumber) {
+            message = "Please fill out all fields.";
+            errorDiv.innerHTML = `<h1 class="error-message">${message}</h1>`;
+            main.appendChild(errorDiv);
+            setTimeout(() => {
+              errorDiv.classList.add("fade-out");
+              setTimeout(() => {
+                errorDiv.remove();
+              }, 1000); // Remove the error message after 1 second
+            }, 3000); // Fade out the error message after 3 seconds
+          } else {
+            message = "Creating Profile! ";
+            successDiv.innerHTML = `
+            <h1 class="success-message">${message}</h1>
+            <div class="spinner"></div>
+            `;
+            main.appendChild(successDiv);
+          }
+
+          // Optionally, clear the form after submission
+          teachersForm.reset();
+        });
+      });
+    </script>
+  </body>
 </html>
