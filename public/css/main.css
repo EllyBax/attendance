@@ -69,7 +69,7 @@ body {
 }
 
 @keyframes loading {
-  to{
+  to {
     transform: rotate(360deg);
   }
 }
@@ -103,10 +103,11 @@ main {
   font-size: 3rem;
 }
 
-.title button {
+.title a {
   border: none;
   background: var(--main-text);
   color: var(--second-bg);
+  text-decoration: none;
   font-size: 1.1rem;
   margin: 0 0.5rem;
   text-transform: uppercase;
@@ -117,7 +118,7 @@ main {
   transition: all 0.5s ease-in-out;
 }
 
-.title button:hover {
+.title a:hover {
   background: var(--second-bg);
   color: var(--second-text);
 }
@@ -172,6 +173,11 @@ main {
 
 .outlined-table {
   border-collapse: collapse; /* Combines borders into a single border */
+}
+.outlined-table td,
+.outlined-table th {
+  overflow-wrap: break-word;
+  min-width: 200px;
 }
 
 .outlined-table td,

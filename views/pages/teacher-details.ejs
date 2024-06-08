@@ -15,15 +15,12 @@
       <%- include('../partials/header') %>
       <div class="nav">
         <div class="navlinks">
-          <%const hrefUrl=`${currentUrl}`; %>
-          <% for (let _class of classes) {%>
-            <% let className = `${_class.name}${_class.course}` %>
-            <a href="<%= hrefUrl %>/<%= className %>">
-              <%= className %>
+          <% for (let _module of modules) {%>
+            <a href="/modules/<%= _module.name %>">
+              <span style="color: green;"><%= _module.code %></span> <%= _module.name %>
             </a>
             <% } %>
         </div>
-        <br />
       </div>
     </main>
     <footer><%- include('../partials/footer') %></footer>

@@ -1,9 +1,10 @@
 <header class="title">
   <h1>
-    <%= title %>
+    <%= ( locals.teacher ) ? teacher.name : title %>
       <%= locals._module %>
+      <%= locals._class %>
   </h1>
   <% for(link of locals.navlinks) {%>
-    <button onclick="window.location.href = `<%= link %>`"><%= link %></button>
+    <a href="/<%= link %>"><%= link %></a>
   <%}%>
 </header>

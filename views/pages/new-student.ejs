@@ -30,6 +30,22 @@
               placeholder="Registration Number"
             />
           </div>
+          <div class="formcheck">
+            <label for="_class"> Student's Class: </label>
+            <datalist id="classes">
+              <% for( let _class of classes ) { %> <% let className =
+              `${_class.name}${_class.course}` %>
+              <option value="<%= className %>"><%= className %></option>
+              <% } %>
+            </datalist>
+            <input
+              list="classes"
+              type="text"
+              id="_class"
+              name="_class"
+              placeholder="e.g BENG19 COE"
+            />
+          </div>
           <button type="submit">REGISTER</button>
         </form>
         <br />
@@ -75,6 +91,7 @@
             <div class="spinner"></div>
             `;
             main.appendChild(successDiv);
+            studentsForm.submit();
           }
 
           // Optionally, clear the form after submission

@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <style>
+      @import url("/css/main.css");
+    </style>
+  </head>
 
-  <style>
-    @import url('/css/main.css');
-  </style>
-</head>
-
-<body>
-  <main>
-    <%- include('../partials/header') %>
+  <body>
+    <main>
+      <%- include('../partials/header') %>
       <div class="nav">
         <div class="table">
           <table class="outlined-table">
@@ -22,30 +21,34 @@
               <th>Identification Number</th>
               <th>Name</th>
             </tr>
-            <% let index=0 %>
-              <% for (let teacher of teachers) { %>
-                <tr>
-                  <td>
-                    <%= ++index %>
-                  </td>
-                  <td>
-                    <%= teacher.id %>
-                  </td>
-                  <td>
-                    <%= teacher.name %>
-                  </td>
-                </tr>
-                <% } %>
+            <% let index=0 %> <% for (let teacher of teachers) { %>
+            <tr>
+              <td><%= ++index %></td>
+              <td>
+                <a
+                  href="<%= currentUrl %>/<%= teacher.id %>"
+                  style="color: var(--second-text)"
+                  ><%= teacher.id %></a
+                >
+              </td>
+              <td>
+                <a
+                  href="<%= currentUrl %>/<%= teacher.id %>"
+                  style="color: var(--second-text)"
+                  ><%= teacher.name %></a
+                >
+              </td>
+            </tr>
+            <% } %>
           </table>
         </div>
-        <a title="Create new teacher profile" href="/new-teacher">Register new teacher</a>
-        <br>
+        <a title="Create new teacher profile" href="/new-teacher"
+          >Register new teacher</a
+        >
+        <br />
         <!-- <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center> -->
       </div>
-  </main>
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
-</body>
-
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
+  </body>
 </html>

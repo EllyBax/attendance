@@ -31,6 +31,7 @@ form h2 {
   width: 60%;
   text-align: start;
   padding: 10px;
+  color: var(--second-text);
   background: var(--second-bg);
   border: 1px solid var(--second-text);
   border-bottom: 3px solid var(--second-text);

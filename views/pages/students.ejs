@@ -21,6 +21,7 @@
               <th>S/N</th>
               <th>Registration Number</th>
               <th>Name</th>
+              <th>Class</th>
             </tr>
             <% let index=0 %>
               <% for (let student of students) { %>
@@ -33,6 +34,9 @@
                   </td>
                   <td>
                     <%= student.name %>
+                  </td>
+                  <td>
+                    <%= student.class %>
                   </td>
                 </tr>
                 <% } %>
