@@ -256,7 +256,6 @@ app.get("/classes/:name", async (req, res) => {
 
 app.get("/modules", async (req, res) => {
   const modules = await fetchModules();
-  console.log(modules);
   return res.render("pages/modules", {
     title: "Modules page",
     currentUrl: req.originalUrl,
@@ -265,8 +264,15 @@ app.get("/modules", async (req, res) => {
   });
 });
 
-app.get("/modules/:code", async (req, res) => {
-  let _module = req.params.code;
+async function getModuleByName(name) {
+  const _module = await pool.query(`SELECT * FROM modules where name = $1`, [name]);
+  return _module.rows[0];
+}
+
+app.get("/modules/:name", async (req, res) => {
+  let name = req.params.name;
+  const _module = await getModuleByName(name);
+  console.log(_module.name);
   return res.render("pages/module-details", {
     title: "Attendance for ",
     _module,
@@ -305,6 +311,35 @@ app.post("/teacher-registration", async (req, res) => {
   }
 });
 
+app.get('/record-attendance/:name', async (req, res) => {
+  const { name } = req.params
+  return res.render("pages/record-attendance", {
+    title: "Record attendance",
+    navlinks: navlinks.teachers,
+    name,
+  });
+})
+
+async function getStudentByRegistrationNumber(registrationNumber) {
+  const student = await pool.query(`SELECT * FROM students where registrationnumber = $1`, [registrationNumber]);
+  return student.rows[0];
+}
+
+
+app.post('/attendance-record', async (req, res) => {
+  const { lesson, registrationNumber } = req.body
+  const student = await getStudentByRegistrationNumber(registrationNumber);
+  // console.log(student);
+  const name = student.name
+
+  const pathSegments = req.path.split('/');
+  const lastSegment = pathSegments[pathSegments.length - 1];
+
+  console.log(lastSegment);
+  // const record = await pool.query(`INSERT INTO Entrepreneurship(name, idnumber, ${lesson}) VALUES ($1, $2, $3)`, [name, registrationNumber, true])
+
+  return res.send("Data received")
+})
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

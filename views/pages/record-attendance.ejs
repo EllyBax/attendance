@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("/css/main.css");
+      @import url("/css/students.css");
+    </style>
+  </head>
+
+  <body>
+    <main id="main">
+      <%- include('../partials/header') %>
+      <div class="nav">
+        <form action="/attendance-record" method="post" id="attendanceForm">
+          <h2>Attendance Sign In</h2>
+          <div class="formcheck">
+            <datalist id="lessons">
+              <option value="lesson1">lesson1</option>
+              <option value="lesson2">lesson2</option>
+              <option value="lesson3">lesson3</option>
+              <option value="lesson4">lesson4</option>
+              <option value="lesson5">lesson5</option>
+              <option value="lesson6">lesson6</option>
+              <option value="lesson7">lesson7</option>
+            </datalist>
+            <label for="lesson"> Lesson Number: </label>
+            <input
+              type="text"
+              id="lesson"
+              list="lessons"
+              name="lesson"
+              placeholder="Lesson Number"
+            />
+          </div>
+          <div class="formcheck">
+            <label for="registrationNumber"> Registration Number: </label>
+            <input
+              type="text"
+              id="registrationNumber"
+              name="registrationNumber"
+              placeholder="Registration Number"
+            />
+          </div>
+          <button type="submit">REGISTER</button>
+        </form>
+        <br />
+      </div>
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const studentsForm = document.getElementById("studentsForm");
+        const successDiv = document.createElement("div");
+        successDiv.className = "success";
+        successDiv.id = "success";
+
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error";
+        errorDiv.id = "error";
+
+        studentsForm.addEventListener("submit", (event) => {
+          event.preventDefault(); // Prevent the form from submitting normally
+
+          const name = document.getElementById("name").value.trim();
+          const registrationNumber = document
+            .getElementById("registrationNumber")
+            .value.trim();
+
+          let message;
+
+          if (!name || !registrationNumber) {
+            message = "Please fill out all fields.";
+            errorDiv.innerHTML = `<h1 class="error-message">${message}</h1>`;
+            main.appendChild(errorDiv);
+            setTimeout(() => {
+              errorDiv.classList.add("fade-out");
+              setTimeout(() => {
+                errorDiv.remove();
+              }, 1000); // Remove the error message after 1 second
+            }, 3000); // Fade out the error message after 3 seconds
+          } else {
+            message = "Creating Profile ";
+            successDiv.innerHTML = `
+            <h1 class="success-message">${message}</h1>
+            <div class="spinner"></div>
+            `;
+            main.appendChild(successDiv);
+            studentsForm.submit();
+          }
+
+          // Optionally, clear the form after submission
+          studentsForm.reset();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -17,7 +17,7 @@
     <div class="nav">
       <div class="navlinks">
         <% for (let _module of modules) { %>
-            <a href="<%= currentUrl %>/<%= _module.name %>">
+            <a href="<%= currentUrl %><%= _module.name %>">
               <span style="color: green;"><%= _module.code %></span> <%= _module.name %>
             </a>
         <% } %>
