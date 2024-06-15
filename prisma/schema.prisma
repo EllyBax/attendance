@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +5,85 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Department {
+  code     String    @id @unique
+  name     String    @unique
+  hod      HOD? // Use a single HOD object instead of an array to indicate a one-to-one relationship
+  courses  Course[]
+  teachers Teacher[]
+}
+
+model HOD {
+  id             Int        @id @default(autoincrement())
+  name           String     @db.VarChar(255)
+  email          String     @unique
+  phone          Int
+  password       String
+  departmentCode String     @unique // Add @unique to ensure each HOD is linked to a unique department
+  department     Department @relation(fields: [departmentCode], references: [code])
+}
+
+model Course {
+  code           String     @id @unique
+  name           String     @db.VarChar(255)
+  departmentCode String
+  department     Department @relation(fields: [departmentCode], references: [code])
+  class          Class?     @relation(fields: [classId], references: [id])
+  classId        Int?
+}
+
+model Class {
+  id       Int       @id @default(autoincrement())
+  name     String    @db.VarChar(255)
+  modules  Module[]
+  courses  Course[]
+  students Student[]
+}
+
+model Module {
+  code      String   @id @unique
+  name      String   @db.VarChar(255)
+  classId   Int
+  class     Class    @relation(fields: [classId], references: [id])
+  teacherId Int?
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+}
+
+model Student {
+  registrationNumber BigInt       @id @unique
+  fingerprintId      String       @unique
+  name               String       @db.VarChar(255)
+  classId            Int
+  class              Class        @relation(fields: [classId], references: [id])
+  attendances        Attendance[]
+}
+
+model Teacher {
+  id             Int         @id @default(autoincrement())
+  name           String      @db.VarChar(255)
+  departmentCode String?
+  department     Department? @relation(fields: [departmentCode], references: [code])
+  modules        Module[]
+  lessons        Lesson[]
+}
+
+model Lesson {
+  id          String       @id @unique
+  date        DateTime // Use DateTime for consistency
+  startTime   DateTime // Use DateTime for consistency
+  endTime     DateTime // Use DateTime for consistency
+  teacherId   Int
+  teacher     Teacher      @relation(fields: [teacherId], references: [id])
+  attendances Attendance[]
+}
+
+model Attendance {
+  id        Int     @id @default(autoincrement())
+  lessonId  String
+  lesson    Lesson  @relation(fields: [lessonId], references: [id])
+  studentId BigInt
+  student   Student @relation(fields: [studentId], references: [registrationNumber])
+  isPresent Boolean
 }
