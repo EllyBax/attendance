@@ -105,8 +105,8 @@ main {
 
 .title a {
   border: none;
-  background: var(--main-text);
-  color: var(--second-bg);
+  background: var(--second-bg);
+  color: var(--second-text);
   text-decoration: none;
   font-size: 1.1rem;
   margin: 0 0.5rem;
@@ -119,8 +119,8 @@ main {
 }
 
 .title a:hover {
-  background: var(--second-bg);
-  color: var(--second-text);
+  background: var(--main-text);
+  color: var(--second-bg);
 }
 
 .nav {
@@ -135,7 +135,7 @@ main {
 
 .nav > a {
   margin-bottom: 1rem;
-  color: var(--main-text);
+  color: var(--success-bg);
 }
 
 .navlinks {

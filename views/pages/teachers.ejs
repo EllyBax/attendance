@@ -14,6 +14,7 @@
     <main>
       <%- include('../partials/header') %>
       <div class="nav">
+        <% if (teachers.length > 0 ){%>
         <div class="table">
           <table class="outlined-table">
             <tr>
@@ -21,7 +22,7 @@
               <th>Identification Number</th>
               <th>Name</th>
             </tr>
-            <% let index=0 %> <% for (let teacher of teachers) { %>
+            <% let index=0; for (let teacher of teachers) { %>
             <tr>
               <td><%= ++index %></td>
               <td>
@@ -42,6 +43,9 @@
             <% } %>
           </table>
         </div>
+       <% } else {%>
+        <h3>No teachers registered here!</h3>
+       <%} %>
         <a title="Create new teacher profile" href="/new-teacher"
           >Register new teacher</a
         >

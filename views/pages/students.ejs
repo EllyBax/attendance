@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <style>
+      @import url("/css/main.css");
+    </style>
+  </head>
 
-  <style>
-    @import url('/css/main.css');
-  </style>
-</head>
-
-<body>
-  <main>
-    <%- include('../partials/header') %>
+  <body>
+    <main>
+      <%- include('../partials/header') %>
       <div class="nav">
+        <% if (students.length > 0) {%>
         <div class="table">
           <table class="outlined-table">
             <tr>
@@ -23,32 +23,25 @@
               <th>Name</th>
               <th>Class</th>
             </tr>
-            <% let index=0 %>
-              <% for (let student of students) { %>
-                <tr>
-                  <td>
-                    <%= ++index %>
-                  </td>
-                  <td>
-                    <%= student.registrationnumber %>
-                  </td>
-                  <td>
-                    <%= student.name %>
-                  </td>
-                  <td>
-                    <%= student.class %>
-                  </td>
-                </tr>
-                <% } %>
+            <% let index=0 %> <% for (let student of students) { %>
+            <tr>
+              <td><%= ++index %></td>
+              <td><%= student.registrationnumber %></td>
+              <td><%= student.name %></td>
+              <td><%= student.class %></td>
+            </tr>
+            <% } %>
           </table>
         </div>
-        <a title="Create new student profile" href="/new-student">Register new student</a>
-        <br>
+        <%} else{%>
+        <h3>No students registered here</h3>
+        <%} %>
+        <a title="Create new student profile" href="/new-student"
+          >Register new student</a
+        >
+        <br />
       </div>
-  </main>
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
-</body>
-
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
+  </body>
 </html>

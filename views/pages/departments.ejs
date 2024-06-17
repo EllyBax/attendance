@@ -12,16 +12,18 @@
 
   <body>
     <main>
-      <header class="title">
-        <h1><%= title %></h1>
-      </header>
+      <%- include('../partials/header') %>
       <div class="nav">
+        <% if (departments.length > 0) { %>
         <div class="navlinks">
-          <a href="/teachers">TEACHERS</a>
-          <a href="/departments">DEPARTMENTS</a>
-          <a href="/courses">COURSES</a>
-          <a href="/modules">MODULES</a>
+          <% departments.forEach(department=> { %> <% let departmentName =
+          `${department.code} , ${department.name}` %>
+          <a href="departments/<%= department.name %>"><%= departmentName %></a>
+          <% }) %>
         </div>
+        <% } else { %>
+        <h3>No departments created yet!</h3>
+        <% } %>
       </div>
     </main>
     <footer><%- include('../partials/footer') %></footer>
