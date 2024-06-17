@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("/css/main.css");
+      @import url("/css/students.css");
+    </style>
+  </head>
+
+  <body>
+    <main id="main">
+      <%- include('../partials/header') %>
+      <div class="nav">
+        <form action="/hod-registration" method="post" id="hodForm">
+          <h2>Head of Department</h2>
+          <div class="formcheck">
+            <label for="name"> Name: </label>
+            <input type="text" id="name" name="name" placeholder="Full Name" />
+          </div>
+          <div class="formcheck">
+            <label for="email"> Email: </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@gmail.com"
+            />
+          </div>
+          <div class="formcheck">
+            <label for="phone"> Phone: </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="e.g. 07********"
+            />
+          </div>
+          <div class="formcheck">
+            <label for="password"> Password: </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter Password"
+            />
+          </div>
+          <button id="submitButton" type="submit">REGISTER</button>
+        </form>
+        <br />
+        <!-- <center><button onclick="window.history.back()" title="Go Back" class="back">Back</button></center> -->
+      </div>
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
+  </body>
+</html>

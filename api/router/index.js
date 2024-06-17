@@ -1,12 +1,16 @@
 import express from "express";
-import StudentCtrl from "../controllers/students.js"
+import StudentCtrl from "../controllers/students.js";
 import TeachersCtrl from "../controllers/teachers.js";
-import ClassCtrl from "../controllers/classes.js"
-import DeptCtrl from "../controllers/departments.js"
-import CourseCtrl from "../controllers/courses.js"
+import ClassCtrl from "../controllers/classes.js";
+import DeptCtrl from "../controllers/departments.js";
+import CourseCtrl from "../controllers/courses.js";
 import ModuleCtrl from "../controllers/modules.js";
 
 const router = express.Router();
+
+router.use(express.static("public"));
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 const navlinks = {
   teachers: ["home", "students", "classes", "modules"],
@@ -28,7 +32,7 @@ router.get("/home", (req, res) => {
 });
 
 router.get("/students", async (req, res) => {
-  const students = await StudentCtrl.fetchStudents()
+  const students = await StudentCtrl.fetchStudents();
   return res.render("pages/students", {
     title: "students page",
     navlinks: navlinks.students,
@@ -36,14 +40,36 @@ router.get("/students", async (req, res) => {
   });
 });
 
-router.get("/departments", async (req, res)=>{
-  const departments = await DeptCtrl.fetchDepartments()
-  return res.render('pages/departments', {
+router.get("/departments", async (req, res) => {
+  const departments = await DeptCtrl.fetchDepartments();
+  return res.render("pages/departments", {
     title: "Departments",
     navlinks: navlinks.departments,
     departments,
-  })
-})
+  });
+});
+
+router.get("/new-department", async (req, res) => {
+  return res.render("pages/new-department", {
+    title: "Register Department",
+    navlinks: navlinks.departments,
+  });
+});
+
+router.post("/department-registration", async (req, res) => {
+  const departmentData = req.body;
+  console.log(departmentData);
+  return res.render("pages/new-hod", {
+    title: `HOD for ${departmentData.name}`,
+    navlinks: navlinks.departments,
+  });
+});
+
+router.post("/hod-registration", async (req, res) => {
+  const hodData = req.body;
+  console.log(hodData);
+  return res.redirect("/");
+});
 
 router.get("/courses", async (req, res) => {
   const courses = await CourseCtrl.fetchCourses();
@@ -56,7 +82,7 @@ router.get("/courses", async (req, res) => {
 
 router.get("/new-student", async (req, res) => {
   // Add your logic to fetch classes
-  const classes = await ClassCtrl.fetchClasses()
+  const classes = await ClassCtrl.fetchClasses();
   return res.render("pages/new-student", {
     title: "new student page",
     navlinks: navlinks.students,
@@ -66,8 +92,7 @@ router.get("/new-student", async (req, res) => {
 
 router.get("/teachers", async (req, res) => {
   const currentUrl = req.originalUrl;
-  const teachers = await TeachersCtrl.fetchTeachers()
-  console.log(teachers);
+  const teachers = await TeachersCtrl.fetchTeachers();
   return res.render("pages/teachers", {
     title: "teachers page",
     navlinks: navlinks.teachers,
