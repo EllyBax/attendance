@@ -34,6 +34,18 @@ body {
   background: var(--main-bg);
 }
 
+.top-right-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--warning-bg);
+  color: var(--main-text);
+  z-index: 1000; /* Ensure it appears above other content */
+  max-width: 300px; /* Adjust as needed */
+  padding: 15px; /* Adjust as needed */
+  border-radius: 5px; /* Optional: for rounded corners */
+}
+
 .error,
 .success {
   color: var(--main-text);

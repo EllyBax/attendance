@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("/css/main.css");
+      @import url("/css/students.css");
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <header class="title">
+        <h1><%= title %></h1>
+      </header>
+      <% if (messages.error) { %>
+      <div class="alert alert-danger top-right-alert">
+        <%= messages.error %>
+      </div>
+      <% } %>
+      <div class="nav">
+        <form action="/teacher-login" method="post" id="loginForm">
+          <h2>Teacher Login</h2>
+          <div class="formcheck">
+            <label for="id"> ID Number: </label>
+            <input type="number" id="id" name="id" placeholder="Teacher ID" />
+          </div>
+          <div class="formcheck">
+            <label for="password"> Password: </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Teacher Password"
+            />
+          </div>
+          <button id="submitButton" type="submit">SIGN IN</button>
+        </form>
+      </div>
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
+  </body>
+</html>

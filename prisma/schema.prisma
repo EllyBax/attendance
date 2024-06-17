@@ -47,7 +47,7 @@ model Module {
   name      String   @db.VarChar(255)
   classId   Int
   class     Class    @relation(fields: [classId], references: [id])
-  teacherId Int?
+  teacherId BigInt?
   teacher   Teacher? @relation(fields: [teacherId], references: [id])
 }
 
@@ -61,8 +61,9 @@ model Student {
 }
 
 model Teacher {
-  id             Int         @id @unique
+  id             BigInt      @id @unique
   name           String      @db.VarChar(255)
+  password       String
   departmentCode String?
   department     Department? @relation(fields: [departmentCode], references: [code])
   modules        Module[]
@@ -74,7 +75,7 @@ model Lesson {
   date        DateTime // Use DateTime for consistency
   startTime   DateTime // Use DateTime for consistency
   endTime     DateTime // Use DateTime for consistency
-  teacherId   Int
+  teacherId   BigInt
   teacher     Teacher      @relation(fields: [teacherId], references: [id])
   attendances Attendance[]
 }

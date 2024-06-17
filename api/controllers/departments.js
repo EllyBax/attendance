@@ -7,7 +7,7 @@ class DepartmentsController {
     try {
       return await prisma.department.create({
         data: {
-          code: DepartmentData.code,
+          code: DepartmentData.departmentCode,
           name: DepartmentData.name,
         },
       });

@@ -5,8 +5,36 @@ import ClassCtrl from "../controllers/classes.js";
 import DeptCtrl from "../controllers/departments.js";
 import CourseCtrl from "../controllers/courses.js";
 import ModuleCtrl from "../controllers/modules.js";
+import session from "express-session";
+import flash from "connect-flash";
 
 const router = express.Router();
+
+// Configure session middleware
+router.use(
+  session({
+    secret: process.env.SESSION_SECRET, // Replace with a secure secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }, // Set secure to true in production with HTTPS
+  })
+);
+
+router.use(flash());
+
+router.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  next();
+});
+
+function requireLogin(req, res, next) {
+  if (req.session.sessionId) {
+    next();
+  } else {
+    req.flash("error", "Please login");
+    res.redirect("/login"); // Redirect to a login page
+  }
+}
 
 router.use(express.static("public"));
 router.use(express.json());
@@ -31,7 +59,37 @@ router.get("/home", (req, res) => {
   return res.redirect("/");
 });
 
-router.get("/students", async (req, res) => {
+router.get("/hod-index", (req, res) => {
+  return res.render("pages/hod-index", {
+    title: "HOD homepage",
+  });
+});
+
+router.get("/hod-login", (req, res) => {
+  return res.render("pages/hod-login", {
+    title: "Login",
+  });
+});
+
+router.post("/hod-login", async (req, res) => {
+  const hodData = req.body;
+  console.log(hodData);
+  return res.redirect("/hod-index");
+});
+
+router.get("/teacher-login", (req, res) => {
+  return res.render("pages/teacher-login", {
+    title: "Login",
+  });
+});
+
+router.post("/teacher-login", async (req, res) => {
+  const teacherData = req.body;
+  console.log(teacherData);
+  return res.redirect("/modules");
+});
+
+router.get("/students", requireLogin, async (req, res) => {
   const students = await StudentCtrl.fetchStudents();
   return res.render("pages/students", {
     title: "students page",
@@ -58,7 +116,8 @@ router.get("/new-department", async (req, res) => {
 
 router.post("/department-registration", async (req, res) => {
   const departmentData = req.body;
-  console.log(departmentData);
+  const department = await DeptCtrl.newDepartment(departmentData);
+  console.log(department);
   return res.render("pages/new-hod", {
     title: `HOD for ${departmentData.name}`,
     navlinks: navlinks.departments,

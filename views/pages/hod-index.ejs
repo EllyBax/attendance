@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("/css/main.css");
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <header class="title">
+        <h1><%= title %></h1>
+      </header>
+      <% if (messages.error) { %>
+      <div class="alert alert-danger top-right-alert">
+        <%= messages.error %>
+      </div>
+      <% } %>
+      <div class="nav">
+        <div class="navlinks">
+          <a href="/teachers">TEACHERS</a>
+          <a href="/courses">COURSES</a>
+          <a href="/modules">MODULES</a>
+        </div>
+      </div>
+    </main>
+    <footer><%- include('../partials/footer') %></footer>
+  </body>
+</html>

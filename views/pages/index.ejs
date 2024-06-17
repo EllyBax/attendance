@@ -7,6 +7,39 @@
 
     <style>
       @import url("/css/main.css");
+
+      .login-options {
+        display: flex;
+        min-height: 30vh;
+        width: 100vw;
+        justify-content: center;
+        gap: 1rem;
+        margin: 0 auto;
+      }
+
+      .login-options > a {
+        text-decoration: none;
+        font-size: 2rem;
+        transition: all .5s ease;
+      }
+
+      .login-options > a:hover {
+        background: var(--second-text);
+        color: var(--success-bg);
+      }
+
+      .hod,
+      .teacher,
+      .departments {
+        width: 20%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        box-shadow: 0 0 4px var(--main-bg);
+        background: var(--main-bg);
+        color: var(--main-text);
+      }
     </style>
   </head>
 
@@ -15,12 +48,16 @@
       <header class="title">
         <h1><%= title %></h1>
       </header>
+      <% if (messages.error) { %>
+      <div class="alert alert-danger top-right-alert">
+        <%= messages.error %>
+      </div>
+      <% } %>
       <div class="nav">
-        <div class="navlinks">
-          <a href="/teachers">TEACHERS</a>
-          <a href="/departments">DEPARTMENTS</a>
-          <a href="/courses">COURSES</a>
-          <a href="/modules">MODULES</a>
+        <div class="login-options">
+          <a href="/hod-login" class="hod">HOD &rArr;</a>
+          <a href="/teacher-login" class="teacher">TEACHER &rArr;</a>
+          <!-- <a href="/departments" class="departments">DEPARTMENTS &rArr;</a> -->
         </div>
       </div>
     </main>

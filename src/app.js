@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import pkg from "pg";
+import PasswordCtrl from "../api/controllers/password.js";
 
 dotenv.config({
   path: ".env.development.local",
@@ -21,71 +22,85 @@ const navlinks = {
   classes: ["home", "teachers", "students", "modules"],
 };
 
+let teacherPassword = await PasswordCtrl.hashPassword('1234')
+
 const teachers = [
   {
     id: 12012023045,
     name: "Majogoro",
+    departmentCode: "ETE",
+    password: teacherPassword,
   },
   {
     id: 12012023047,
     name: "J. Ally",
+    departmentCode: "ETE",
+    password: teacherPassword,
   },
   {
     id: 12012023046,
     name: "Kajange",
+    departmentCode: "ETE",
+    password: teacherPassword,
   },
   {
     id: 12012023048,
     name: "Nzowa",
+    departmentCode: "ETE",
+    password: teacherPassword,
   },
   {
     id: 12012023049,
     name: "Justina",
+    departmentCode: "ETE",
+    password: teacherPassword,
   },
   {
     id: 12012023050,
     name: "Dr. Simbeye",
+    departmentCode: "ETE",
+    password: teacherPassword,
   }
 ]
 
-// const modules = [
-//   {
-//     name: "Entrepreneurship",
-//     code: "GSU 08211",
-//     credits: 6,
-//     teacherId: "12012023045",
-//   },
-//   {
-//     name: "Project",
-//     code: "ETU 08221",
-//     credits: 12,
-//     teacherId: "12012023046",
-//   },
-//   {
-//     name: "Radar",
-//     code: "ETU 08222",
-//     credits: 9,
-//     teacherId: "12012023047",
-//   },
-//   {
-//     name: "Broadcasting",
-//     code: "ETU 08223",
-//     credits: 9,
-//     teacherId: "12012023048",
-//   },
-//   {
-//     name: "Satellite",
-//     code: "ETU 08224",
-//     credits: 9,
-//     teacherId: "12012023049",
-//   },
-//   {
-//     name: "Robotics",
-//     code: "COU 08202",
-//     credits: 9,
-//     teacherId: "12012023050",
-//   },
-// ];
+const modules = [
+  {
+    name: "Entrepreneurship",
+    code: "GSU 08211",
+    classId: 1,
+    teacherId: 12012023045,
+  },
+  {
+    name: "Project",
+    code: "ETU 08221",
+    classId: 1,
+    teacherId: 12012023046,
+  },
+  {
+    name: "Radar",
+    code: "ETU 08222",
+    classId: 1,
+    teacherId: 12012023047,
+  },
+  {
+    name: "Broadcasting",
+    code: "ETU 08223",
+    classId: 1,
+    teacherId: 12012023048,
+  },
+  {
+    name: "Satellite",
+    code: "ETU 08224",
+    classId: 1,
+    teacherId: 12012023049,
+  },
+  {
+    name: "Robotics",
+    code: "COU 08202",
+    classId: 1,
+    teacherId: 12012023050,
+  },
+];
 
 const { Pool } = pkg;
 
