@@ -61,7 +61,7 @@ model Student {
 }
 
 model Teacher {
-  id             Int         @id @default(autoincrement())
+  id             Int         @id @unique
   name           String      @db.VarChar(255)
   departmentCode String?
   department     Department? @relation(fields: [departmentCode], references: [code])
